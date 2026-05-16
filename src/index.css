@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-oxblood: 139 26 26;
+    --color-oxblood-deep: 92 15 15;
+    --color-gold: 201 169 97;
+    --color-ink: 10 10 10;
+    --color-cream: 245 239 230;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-cream-light text-ink font-sans;
+    font-feature-settings: 'ss01', 'ss02', 'cv01';
+  }
+
+  ::selection {
+    background-color: rgb(var(--color-oxblood));
+    color: rgb(var(--color-cream));
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0A0A;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #5C0F0F;
+    border: 2px solid #0A0A0A;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8B1A1A;
+  }
+}
+
+@layer components {
+  .container-wide {
+    @apply max-w-7xl mx-auto px-6 md:px-10 lg:px-16;
+  }
+
+  .container-tight {
+    @apply max-w-5xl mx-auto px-6 md:px-10;
+  }
+
+  .section-number {
+    @apply font-display italic text-gold text-sm md:text-base tracking-widest;
+  }
+
+  .section-label {
+    @apply font-sans uppercase tracking-ultra text-xs font-medium;
+  }
+
+  .section-title {
+    @apply font-display font-light text-4xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight;
+  }
+
+  .display-headline {
+    @apply font-display font-light leading-[1.02] tracking-tight;
+  }
+
+  .gold-rule {
+    @apply h-px w-16 bg-gold;
+  }
+
+  .gold-rule-long {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-gold to-transparent;
+  }
+
+  .corner-bracket {
+    position: relative;
+  }
+
+  .corner-bracket::before,
+  .corner-bracket::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-color: #C9A961;
+  }
+
+  .corner-bracket::before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid;
+    border-left: 1px solid;
+  }
+
+  .corner-bracket::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 1px solid;
+    border-right: 1px solid;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-oxblood text-cream-light font-sans text-sm uppercase tracking-widest font-medium transition-all duration-300 hover:bg-oxblood-deep border border-oxblood hover:border-gold/40;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-transparent text-ink font-sans text-sm uppercase tracking-widest font-medium transition-all duration-300 border border-ink/40 hover:border-oxblood hover:text-oxblood;
+  }
+
+  .btn-ghost-light {
+    @apply inline-flex items-center justify-center gap-3 px-7 py-3.5 bg-transparent text-cream-light font-sans text-sm uppercase tracking-widest font-medium transition-all duration-300 border border-cream-light/30 hover:border-gold hover:text-gold;
+  }
+
+  .link-underline {
+    @apply relative inline-block transition-colors duration-200;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute left-0 bottom-0 w-full h-px bg-current scale-x-0 origin-left transition-transform duration-300;
+  }
+
+  .link-underline:hover::after {
+    @apply scale-x-100;
+  }
+
+  .editorial-card {
+    @apply relative bg-cream-light border border-ink/10 transition-all duration-500 hover:border-gold/60;
+  }
+
+  .editorial-card-dark {
+    @apply relative bg-ink-soft border border-cream-light/10 transition-all duration-500 hover:border-gold/60;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Noise texture overlay */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* Reveal-on-scroll initial state */
+  .reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
