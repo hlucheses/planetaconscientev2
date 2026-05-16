@@ -1,64 +1,68 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,jsx}'],
+  content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        oxblood: {
-          DEFAULT: '#8B1A1A',
-          deep: '#5C0F0F',
-          light: '#A93232',
-        },
-        gold: {
-          DEFAULT: '#C9A961',
-          light: '#E5D2A0',
-          dark: '#9C8244',
-        },
-        ink: {
-          DEFAULT: '#0A0A0A',
-          soft: '#1A1A1A',
-          mute: '#2D2D2D',
-        },
-        cream: {
-          DEFAULT: '#F5EFE6',
-          light: '#FAF7F2',
-          warm: '#EFE7DA',
-        },
+        // Base — paleta da Planeta Consciente
+        ink:        "#0A2E1F", // verde-petróleo profundo (texto principal / fundos escuros)
+        forest:     "#1E5A3E", // verde floresta
+        leaf:       "#2E8B57", // verde folha (CTAs primários)
+        teal:       "#2A9D8F", // verde teal
+        mint:       "#C7EBD1", // verde água suave (fundos claros)
+        cream:      "#FAF7F0", // off-white principal
+        bone:       "#F3EFE3", // off-white alternativo
+        // Acento quente — terracota / sol africano
+        terracotta: "#D96E2E",
+        clay:       "#B8541F",
+        sun:        "#F2B544",
       },
       fontFamily: {
-        display: ['Fraunces', 'Cormorant Garamond', 'Georgia', 'serif'],
-        sans: ['Manrope', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        display: ['"Bricolage Grotesque"', "ui-sans-serif", "system-ui", "sans-serif"],
+        body:    ["Manrope", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       letterSpacing: {
-        widest: '0.25em',
-        ultra: '0.4em',
+        tightest: "-0.04em",
+      },
+      borderRadius: {
+        "4xl": "2rem",
+        "5xl": "2.5rem",
+      },
+      boxShadow: {
+        "soft":  "0 8px 30px -10px rgba(10, 46, 31, 0.18)",
+        "glow":  "0 0 0 6px rgba(46, 139, 87, 0.15)",
       },
       animation: {
-        'fade-up': 'fadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-        'fade-in': 'fadeIn 0.8s ease-out forwards',
-        'reveal': 'reveal 1.1s cubic-bezier(0.77, 0, 0.175, 1) forwards',
-        'gold-shine': 'goldShine 3s ease-in-out infinite',
+        "fade-up":       "fadeUp .8s cubic-bezier(.16,.84,.44,1) both",
+        "fade-in":       "fadeIn .8s ease-out both",
+        "marquee":       "marquee 40s linear infinite",
+        "blob":          "blob 18s ease-in-out infinite",
+        "count":         "count .6s ease-out both",
       },
       keyframes: {
         fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(24px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
+          "0%":   { opacity: "0", transform: "translateY(24px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          "0%":   { opacity: "0" },
+          "100%": { opacity: "1" },
         },
-        reveal: {
-          '0%': { opacity: '0', clipPath: 'inset(0 100% 0 0)' },
-          '100%': { opacity: '1', clipPath: 'inset(0 0 0 0)' },
+        marquee: {
+          "0%":   { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
         },
-        goldShine: {
-          '0%, 100%': { opacity: '0.6' },
-          '50%': { opacity: '1' },
+        blob: {
+          "0%, 100%": { transform: "translate(0,0) scale(1)" },
+          "33%":      { transform: "translate(30px,-20px) scale(1.08)" },
+          "66%":      { transform: "translate(-20px,30px) scale(.95)" },
+        },
+        count: {
+          "0%":   { opacity: "0", transform: "translateY(8px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
         },
       },
     },
   },
   plugins: [],
-}
+};
